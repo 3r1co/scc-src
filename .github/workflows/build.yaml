@@ -20,4 +20,4 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
         registry: docker.io
         repository: 3r1co/ssc
-        tags: $GITHUB_SHA
+        tags: 1.0
