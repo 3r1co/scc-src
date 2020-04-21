@@ -29,6 +29,7 @@ jobs:
       with:
         args: '--input-path ecs-task.yaml'
     - name: deploy-to-aws
+      if: github.ref == 'refs/heads/master'
       run: |
         aws configure set default.region $AWS_REGION
         aws configure set default.output json
