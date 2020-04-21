@@ -4,6 +4,7 @@ on:
   push:
     branches:
     - master
+    - deploy-to-aws
 
 env:
   AWS_REGION: us-east-1
