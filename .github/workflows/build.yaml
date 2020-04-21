@@ -33,6 +33,13 @@ jobs:
       run: |
         sed -i "s/IMAGE_TAG/sha-$(git rev-parse --short HEAD)/g" kustomization.yaml
         cat kustomization.yaml
+    - name: configure-aws
+      run: |
+        aws configure set default.region $AWS_REGION
+        aws configure set default.output json
+        aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws configure set aws_session_token ${{ secrets.AWS_SESSION_TOKEN }}
     - name: deploy-to-k8s
       if: github.ref == 'refs/heads/deploy-to-k8s'
       run: |
@@ -41,9 +48,4 @@ jobs:
     - name: deploy-to-aws
       if: github.ref == 'refs/heads/master'
       run: |
-        aws configure set default.region $AWS_REGION
-        aws configure set default.output json
-        aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws configure set aws_session_token ${{ secrets.AWS_SESSION_TOKEN }}
         aws cloudformation deploy --template-file ecs-task.yaml --stack-name ecs-task --parameter-overrides ImageName=docker.io/3r1co/ssc:sha-$(git rev-parse --short HEAD) --no-fail-on-empty-changeset
