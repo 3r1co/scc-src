@@ -4,5 +4,5 @@ resources:
   - deployment.yaml
 images:
   - name: mywebserver
-    newName: 3r1co/ssc
+    newName: IMAGE_NAME
     newTag: IMAGE_TAG

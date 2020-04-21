@@ -31,6 +31,7 @@ jobs:
         args: '--input-path cf-all.yaml'
     - name: prepare-kustomize
       run: |
+        sed -i "s#IMAGE_NAME#3r1co/ssc#g" kustomization.yaml
         sed -i "s/IMAGE_TAG/sha-$(git rev-parse --short HEAD)/g" kustomization.yaml
         cat kustomization.yaml
     - name: configure-aws
