@@ -33,5 +33,5 @@ jobs:
         aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws configure set aws_session_token ${{ secrets.AWS_SESSION_TOKEN }}
         aws cloudformation deploy --template-file cloudformation.yaml --stack-name eric-stack --no-fail-on-empty-changeset
-        aws ec2 describe-instances
         aws eks update-kubeconfig --name isen
+        kubectl get nodes
