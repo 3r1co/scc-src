@@ -27,7 +27,7 @@ jobs:
         tag_with_sha: true
     - uses: minchao/cfn-nag-action@master
       with:
-        args: '--input-path ecs-task.yaml'
+        args: '--input-path cf-all.yaml'
     - name: deploy-to-aws
       if: github.ref == 'refs/heads/master'
       run: |
