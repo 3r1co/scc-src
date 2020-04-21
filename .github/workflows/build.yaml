@@ -44,7 +44,7 @@ jobs:
       if: github.ref == 'refs/heads/deploy-to-k8s'
       run: |
         aws eks update-kubeconfig --name isen
-        kubectl kustomize .
+        kubectl kustomize . | kubectl apply -f -
     - name: deploy-to-aws
       if: github.ref == 'refs/heads/master'
       run: |
