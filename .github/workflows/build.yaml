@@ -25,6 +25,9 @@ jobs:
         registry: docker.io
         repository: 3r1co/ssc
         tag_with_sha: true
+    - uses: minchao/cfn-nag-action@master
+      with:
+        args: '--input-path ecs-task.yaml'
     - name: deploy-to-aws
       run: |
         aws configure set default.region $AWS_REGION
