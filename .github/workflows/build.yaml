@@ -29,6 +29,11 @@ jobs:
         registry: docker.io
         repository: 3r1co/ssc
         tag_with_sha: true
+    - name: use klar
+      run: |
+        wget -q https://github.com/optiopay/klar/releases/download/v2.4.0/klar-2.4.0-linux-amd64 -O klar
+        chmod +x klar
+        CLAIR_OUTPUT=High CLAIR_ADDR=http://clair.3r1.co:6060 ./klar 3r1co/ssc:sha-$(git rev-parse --short HEAD)
     - uses: minchao/cfn-nag-action@master
       with:
         args: '--input-path cf-all.yaml'
