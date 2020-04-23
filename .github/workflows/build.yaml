@@ -18,6 +18,9 @@ jobs:
  
     steps:
     - uses: actions/checkout@v2
+    - uses: sburris/dependency-check-action@master
+      with:
+        Project-Name: JuiceShop
     - name: build-push
       uses: docker/build-push-action@v1
       with:

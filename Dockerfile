@@ -1,7 +1,7 @@
-FROM node:alpine
+FROM gcr.io/distroless/nodejs
 
-LABEL maintainer "eric.muellenbach@yncrea.fr"
+WORKDIR /app
 
-ADD app.js .
+COPY app.js /app
 
-ENTRYPOINT [ "node", "app.js" ]
+CMD ["app.js"]
